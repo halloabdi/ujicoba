@@ -320,7 +320,7 @@ const Hero = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
               { icon: Archive, title: "Total Laporan", value: "1302", sub: "Terselesaikan", date: "HARI INI" },
-              { icon: User, title: "Pengguna Aktif", value: "50", sub: "Staf DPKH", date: "SEMESTER GENAP" },
+              { icon: User, title: "Pengguna Aktif", value: "50", sub: "Staf DPKH", date: "" },
               { icon: FileText, title: "Informasi", value: "30", sub: "Publikasi", date: "" },
               { icon: Monitor, title: "Pendataan", value: "30+", sub: "Terverifikasi", date: "SAAT INI" }
             ].map((stat, idx) => (
