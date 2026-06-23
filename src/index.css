@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Utilities (Scrollbar, dll) yang sebelumnya ada di dalam <style> App.jsx 
+   juga aman jika ditaruh di sini, namun karena sudah ada di App.jsx tidak perlu ditulis ulang. */
