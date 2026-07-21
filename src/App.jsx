@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
   Archive, Zap, ShieldCheck, Monitor, TrendingUp,
-  Search, X, Eye, Download, LayoutGrid,
+  Search, X, Eye, EyeOff, Download, LayoutGrid,
   FolderOpen, Info, LogIn, Filter, ChevronLeft, ChevronRight,
   FileText, Calendar, User, Lock, Book
 } from 'lucide-react';
@@ -954,12 +954,14 @@ const App = () => {
 const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
     if (!isOpen) {
       setIdentifier('');
       setPassword('');
+      setShowPassword(false);
       setError('');
     }
   }, [isOpen]);
@@ -1046,12 +1048,19 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
                   </div>
                   <input
                     required
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#b58500] focus:border-transparent block pl-10 p-3.5 transition-all outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-2 focus:ring-[#b58500] focus:border-transparent block pl-10 pr-10 p-3.5 transition-all outline-none"
                     placeholder="••••••••"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
               {error && (

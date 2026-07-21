@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
     Archive, Zap, ShieldCheck, Monitor, TrendingUp,
-    Search, X, Eye, Download, LayoutGrid, Trash2, Edit, Plus,
+    Search, X, Eye, EyeOff, Download, LayoutGrid, Trash2, Edit, Plus,
     FolderOpen, Info, LogIn, Filter, ChevronLeft, ChevronRight,
     FileText, Calendar, User, Lock, Book, Bell, Menu, LogOut,
     UploadCloud, CheckCircle, AlertCircle, FileSpreadsheet, FileIcon, UserPlus
@@ -347,6 +347,7 @@ const App = ({ initialUser = null, initialView = 'login', onLogout }) => {
 const LoginView = ({ onLogin, toast }) => {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
@@ -383,7 +384,10 @@ const LoginView = ({ onLogin, toast }) => {
                         <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Password</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><Lock size={18} className="text-slate-400" /></div>
-                            <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-slate-900/50 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-[#b58500] focus:border-transparent block pl-12 p-3.5 transition-all outline-none" placeholder="••••••••" />
+                            <input required type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-slate-900/50 border border-slate-700 text-white rounded-xl focus:ring-2 focus:ring-[#b58500] focus:border-transparent block pl-12 pr-12 p-3.5 transition-all outline-none" placeholder="••••••••" />
+                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-200">
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
                         </div>
                     </div>
                     <button type="submit" className="w-full bg-gradient-to-r from-[#b58500] to-[#805d00] hover:from-[#d4a31a] hover:to-[#9c7200] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#b58500]/30 transition-all transform active:scale-95 flex justify-center items-center gap-2 mt-4">
